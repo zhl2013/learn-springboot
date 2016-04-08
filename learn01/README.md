@@ -31,7 +31,7 @@
 
 	
 ```yml
-//在application.yml中添加配置
+# 在application.yml中添加配置
 liquibase: 
   changeLog: classpath:config/db/changelog/db.changelog-master.yaml  # changelog主配置文件
   enabled: false  # 是否加载启动
@@ -54,7 +54,7 @@ public SpringLiquibase liquibase(DataSource dataSource, LiquibaseProperties liqu
 }
 ```
 
-## 测试
+## 3、测试
 ```shell
 # spring 测试
 #通过application.yml 中 liquibase.enabled 来控制开关，打开时，启动会慢很多
@@ -66,3 +66,4 @@ mvn clean spring-boot:run
 # 需注意classpath 或找不到文件
 mvn clean liquibase:update -Pdev 
 ```
+
