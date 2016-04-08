@@ -4,6 +4,7 @@
 	liquibase http://www.liquibase.org/index.html
 	
 	Liquibase是一个用于跟踪、管理和应用数据库变化的开源的数据库重构工具。它将所有数据库的变化（包括结构和数据）都保存在XML文件中，便于版本控制。
+	liquibase 支持xml/yml/sql/json等格式
 
 ## 1. springboot mvn项目，通过spring cli 生成
 	spring init 会下载demo.zip，解压即可
@@ -21,32 +22,47 @@
 	maven plugin 时，include 需要用src/main/resouces 替换classpath
 	
 ``` xml
+<!--pom.xml-->
 <dependency>
 		<groupId>org.liquibase</groupId>
 		<artifactId>liquibase-core</artifactId>
 </dependency>
 ```	
 
-	在application.yml中添加配置
+	
 ```yml
-
+//在application.yml中添加配置
 liquibase: 
   changeLog: classpath:config/db/changelog/db.changelog-master.yaml  # changelog主配置文件
   enabled: false  # 是否加载启动
   contexts: init,dev  #包含的上下文
 ```	
 
-	ServletInitializer.java 添加配置 springliquibase
+	
 ```java
+//ServletInitializer.java 添加配置 springliquibase
 @Bean
-	@ConditionalOnBean(LiquibaseProperties.class)
-	public SpringLiquibase liquibase(DataSource dataSource, LiquibaseProperties liquibaseProperties) {
-		SpringLiquibase result = new SpringLiquibase();
-		result.setDataSource(dataSource);
-		result.setChangeLog(liquibaseProperties.getChangeLog());
-		result.setContexts(liquibaseProperties.getContexts());
-		// 是否启动
-		result.setShouldRun(liquibaseProperties.isEnabled());
-		return result;
-	}
+@ConditionalOnBean(LiquibaseProperties.class)
+public SpringLiquibase liquibase(DataSource dataSource, LiquibaseProperties liquibaseProperties) {
+	SpringLiquibase result = new SpringLiquibase();
+	result.setDataSource(dataSource);
+	result.setChangeLog(liquibaseProperties.getChangeLog());
+	result.setContexts(liquibaseProperties.getContexts());
+	// 是否启动
+	result.setShouldRun(liquibaseProperties.isEnabled());
+	return result;
+}
+```
+
+## 测试
+```shell
+# spring 测试
+#通过application.yml 中 liquibase.enabled 来控制开关，打开时，启动会慢很多
+mvn clean spring-boot:run
+```
+
+```shell
+# mvn plugin 测试
+# 需注意classpath 或找不到文件
+mvn clean liquibase:update -Pdev 
 ```
