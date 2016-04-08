@@ -1,7 +1,7 @@
 # springboot + liquibase 整合
 2016年04月08日10:17:53
 
-	[liquibase] (#http://www.liquibase.org/index.html)
+	[liquibase] (http://www.liquibase.org/index.html "liquibase 官网")
 	
 	Liquibase是一个用于跟踪、管理和应用数据库变化的开源的数据库重构工具。它将所有数据库的变化（包括结构和数据）
 	都保存在XML文件中，便于版本控制。
