@@ -60,6 +60,8 @@ public SpringLiquibase liquibase(DataSource dataSource, LiquibaseProperties liqu
 # spring 测试
 #通过application.yml 中 liquibase.enabled 来控制开关，打开时，启动会慢很多
 mvn clean spring-boot:run
+
+# 访问http://localhost:8080/h2-console 查看表情况
 ```
 
 ```shell
