@@ -14,6 +14,6 @@ spring:
             enabled: true
 
 liquibase: 
-  changeLog: classpath:config/db/changelog/db.changelog-master.yaml
-  enabled: true
-  contexts: init,dev
+  changeLog: classpath:config/db/changelog/db.changelog-master.yaml  # changelog主配置文件
+  enabled: false  # 是否加载启动
+  contexts: init,dev  #包含的上下文
