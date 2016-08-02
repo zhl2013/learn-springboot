@@ -9,8 +9,5 @@ databaseChangeLog:
   - include: 
       file: src/main/resources/config/db/changelog/sqls/00000_initial_schema.sql
 
-  - include: 
-      file: src/main/resources/config/db/changelog/sqls/00000_init_ldol.sql
-
 #  - include: 
 #      file: classpath:config/db/changelog/xmls/00000_initial_schema.xml

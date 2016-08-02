@@ -1,4 +1,4 @@
-# springboot + liquibase 整合
+# springboot + swagger 整合
 2016年04月08日10:17:53
 
 [liquibase] (http://www.liquibase.org/index.html "liquibase 官网")
